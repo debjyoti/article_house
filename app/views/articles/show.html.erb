@@ -10,23 +10,27 @@
 <div>
   </br></br></br>
   <h4> Comments </h4>
-  <%= render @article.comments %>
+  <dl>
+    <%= render @article.comments if @article.comments.count>0 %>
+  </dl>
 </div>
 
 <div>
-  <dl>
   <%= render :partial => 'comments/form' %>
-  </dl>
 </div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               articles_path, :class => 'btn'  %>
+  <% if can? :update, @article %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_article_path(@article), :class => 'btn' %>
+  <% end %>
+  <% if can? :destroy, @article %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               article_path(@article),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+  <%end%>
 </div>
