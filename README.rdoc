@@ -15,12 +15,6 @@
  - could see articles
  - could add comments to articles
 
-Hints:
- - use devise gem for authentication
- - use cancan gem for checking permissions
- - using twitter bootstrap for this is fine
- - is_admin flag for admin account is fine
-
 2nd stage:
 Added categories for articles:
  Admin:
@@ -28,7 +22,7 @@ Added categories for articles:
  - category could have subcategories
  - can assign article to many categories(add/edit/delete assignement between
    articles and categories) 
-User and Guest:
+ User and Guest:
  - can select category and see articles assigned to that category
 
 == Notes:
