@@ -50,8 +50,19 @@
   <div class="container">
     <div class="row">
       <div class="span1"></div>
-      <div class="span9"> <%= yield %> </div>
-      <div class="span2"></div>
+      <div class="span8"> <%= yield %> </div>
+
+      <div class="span3">
+        <%if user_signed_in? and current_user.role == 'admin' %>
+          <ul class="nav nav-list pull-right">
+            <li class="nav-header">Admin Panel</li>
+            <li><%= link_to 'MANAGE USERS', users_url%></li>
+            <li><%= link_to 'MANAGE ARTICLES', articles_url%></li>
+            <li><%= link_to 'MANAGE COMMENTS', comments_url%></li>
+          </div>
+        <%end%>
+      </div>
+
     </div>
   </div>
 

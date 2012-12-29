@@ -9,16 +9,14 @@ class Ability
            can :manage, :all
          else
            can :read, Article
-           can :read, Comment
-           can :create, Comment
+           can [:show, :create], Comment
            can :update, Comment do |comment|
              user.email # eq comment.user_email
            end
          end
        else
          can :read, Article
-         can :read, Comment
-         can :create, Comment
+         can [:show,:create], Comment
        end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

@@ -1,13 +1,15 @@
 ArticleHouse::Application.routes.draw do
 
+  root :to => 'articles#index'
+
   devise_for :users
   resources :users 
-
-  root :to => 'articles#index'
 
   resources :articles do
     resources :comments
   end
+
+  match "/comments" => "comments#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
