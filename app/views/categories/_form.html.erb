@@ -1,0 +1,12 @@
+<%= form.fields_for :categories, :html => { :class => 'form-horizontal'} do |cat_form| %>
+  <div class="control-group">
+    <%= cat_form.label :name, 'Category:', :class => 'control-label' %>
+    <%= cat_form.text_field :name, :class => 'text-field' %>
+  </div>
+  <% unless cat_form.object.nil? || cat_form.object.new_record? %>
+    <div class="control-group">
+      <%= cat_form.label :_destroy, 'remove:', :class => 'control-label' %>
+      <%= cat_form.check_box :_destroy, :class => 'check-box' %>
+    </div>
+  <% end %>
+<% end %>
