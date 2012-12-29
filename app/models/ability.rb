@@ -8,14 +8,16 @@ class Ability
          if user.role == 'admin'
            can :manage, :all
          else
-           can :read, :all
+           can :read, Article
+           can :read, Comment
            can :create, Comment
            can :update, Comment do |comment|
              user.email # eq comment.user_email
            end
          end
        else
-         can :read, :all
+         can :read, Article
+         can :read, Comment
          can :create, Comment
        end
     #
