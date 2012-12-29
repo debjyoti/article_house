@@ -83,4 +83,15 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def manage
+    @articles = Article.all
+    @manage_article = true
+
+    respond_to do |format|
+      format.html { render action: "index" }
+      format.json { render json: @articles }
+    end
+  end
+
 end

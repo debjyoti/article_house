@@ -10,6 +10,7 @@ ArticleHouse::Application.routes.draw do
   end
 
   match "/comments" => "comments#index"
+  match "/manage_articles" => "articles#manage"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
