@@ -3,6 +3,9 @@ class ArticlesController < ApplicationController
   authorize_resource
   # GET /articles
   # GET /articles.json
+  #
+  SELECT_PROMPT = 'Select Category'
+
   def index
     set_up_index_view
 
@@ -96,7 +99,7 @@ class ArticlesController < ApplicationController
 
   def filter_category
     @selected_category = params[:category_name]
-    if @selected_category == 'All' then
+    if(@selected_category == 'All' or @selected_category == SELECT_PROMPT) then
       @articles = Article.all
     else
       @articles = Category.find_all_by_name(@selected_category).collect{ |cat| cat.article }
@@ -115,9 +118,8 @@ class ArticlesController < ApplicationController
   def set_up_index_view
     @articles = Article.all
     @category_list = Category.select("distinct(name)").collect{ |item| item.name}
-    select_text = 'Select Category'
-    @category_list << select_text
-    @selected_category = select_text
+    @category_list << SELECT_PROMPT
+    @selected_category = SELECT_PROMPT
   end
 
 end
