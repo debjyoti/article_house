@@ -15,7 +15,7 @@ class Ability
            end
          end
        else
-         can :read, Article
+         can [:read, :filter_category], Article
          can [:show,:create], Comment
        end
     #
