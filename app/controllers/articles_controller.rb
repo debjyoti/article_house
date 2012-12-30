@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    set_up_index_view
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,13 +85,39 @@ class ArticlesController < ApplicationController
   end
 
   def manage
-    @articles = Article.all
+    set_up_index_view
     @manage_article = true
 
     respond_to do |format|
       format.html { render action: "index" }
       format.json { render json: @articles }
     end
+  end
+
+  def filter_category
+    @selected_category = params[:category_name]
+    if @selected_category == 'All' then
+      @articles = Article.all
+    else
+      @articles = Category.find_all_by_name(@selected_category).collect{ |cat| cat.article }
+    end
+    @category_list = Category.select("distinct(name)").collect{ |item| item.name}
+    @category_list << 'All'
+
+    respond_to do |format|
+      format.html { render action: "index" }
+      format.json { render json: @articles }
+    end
+  end
+
+  private
+
+  def set_up_index_view
+    @articles = Article.all
+    @category_list = Category.select("distinct(name)").collect{ |item| item.name}
+    select_text = 'Select Category'
+    @category_list << select_text
+    @selected_category = select_text
   end
 
 end

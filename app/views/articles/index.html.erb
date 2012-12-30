@@ -13,6 +13,14 @@
     </tr>
   </thead>
   <tbody>
+
+    <% unless @manage_article %>
+      <%=form_tag filter_category_articles_path do%>
+        <%=select_tag('category_name', options_for_select(@category_list, @selected_category))%>
+        <%=submit_tag "Filter"%>
+      <%end%>
+    <%end%>
+
     <% @articles.each do |article| %>
       <tr>
         <td><%= link_to article.heading, article_path(article) %></td>

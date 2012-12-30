@@ -6,6 +6,9 @@ ArticleHouse::Application.routes.draw do
   resources :users 
 
   resources :articles do
+    collection do
+      post 'filter_category'
+    end
     resources :comments
   end
 
