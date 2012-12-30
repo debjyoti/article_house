@@ -25,7 +25,7 @@ Added categories for articles:
  User and Guest:
  - can select category and see articles assigned to that category
 
-== Notes:
-+ Don't forget to run rake db:seed to have the admin user. Admin user email:
-admin@admin.com and password is 'administrator'
+== Check it out:
+Just clone, bundle, migrate, and run 'rake db:seed' and see how it works.
+Seed data populates the admin user. Admin user email: admin@article.com and password is 'administrator'
 
