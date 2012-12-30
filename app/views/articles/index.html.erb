@@ -17,11 +17,10 @@
     <% unless @manage_article %>
       <%=form_tag filter_category_articles_path do%>
         <% if @category_list.count == 1 %>
-          <%=select_tag('category_name', options_for_select(@category_list, @selected_category), {:disabled => "true"})%>
+          <%=select_tag(:category_name, options_for_select(@category_list, @selected_category), {:disabled => "true"})%>
         <% else %>
-          <%=select_tag('category_name', options_for_select(@category_list, @selected_category))%>
+          <%=select_tag(:category_name, options_for_select(@category_list, @selected_category), { :onchange => "this.form.submit();"})%>
         <%end%>
-        <%=submit_tag "Filter"%>
       <%end%>
     <%end%>
 
