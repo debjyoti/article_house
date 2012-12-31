@@ -14,6 +14,11 @@ class CommentsController < ApplicationController
   def edit
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id]) 
+
+    respond_to do |format|
+      format.html
+      format.js 
+    end
   end
 
   def update
@@ -22,7 +27,7 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @article, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

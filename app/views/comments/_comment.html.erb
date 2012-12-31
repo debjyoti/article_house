@@ -1,5 +1,5 @@
 <% if (comment.id ) then %>
-  <div class="well">
+  <div class="well" id="comment_<%=comment.id.to_s%>">
     <dt>
     <%= sanitize comment.commenter %> :
     </dt>
@@ -8,7 +8,7 @@
     <div >
       <% if can? :edit, @comment %>
         <% if current_user.role=='admin' or comment.user_email == current_user.email %> <!--# TBD: fix cancan and remove this line-->
-          <%= link_to 'edit', edit_article_comment_path(comment.article.id, comment.id), :class => 'btn' %>
+          <%= link_to 'edit', edit_article_comment_path(comment.article.id, comment.id), :class => 'btn', :remote => :true %>
         <% end %>
       <% end %>
       <% if can? :destroy, @comment %>

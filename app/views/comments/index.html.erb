@@ -2,7 +2,7 @@
   <h1><%=t '.title', :default => "Manage Comments"%></h1>
 </div>
 <% @comments.each do |comment| %>
-  <div class="well">
+  <div class="well" id="comment_<%=comment.id%>">
     <dt>
     Article - <%= comment.article.heading %>
     </dt>
@@ -12,7 +12,7 @@
     <div >
       <% if can? :edit, @comment %>
         <% if current_user.role=='admin' or comment.user_email == current_user.email %> <!--# TBD: fix cancan and remove this line-->
-          <%= link_to 'edit', edit_article_comment_path(comment.article.id, comment.id), :class => 'btn' %>
+          <%= link_to 'edit', edit_article_comment_path(comment.article.id, comment.id), :class => 'btn', remote: true %>
         <% end %>
       <% end %>
       <% if can? :destroy, @comment %>
