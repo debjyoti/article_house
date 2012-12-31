@@ -11,18 +11,22 @@
   </br></br></br>
   <h4> Comments </h4>
   <dl>
-    <%= render @article.comments if @article.comments.count>0 %>
+    <div id="comments">
+      <%= render :partial => "comments/create", :locals => { :comments => @article.comments } %>
+    </div>
   </dl>
 </div>
 
-<div>
+<div id="create_comment_form">
   <%= render :partial => 'comments/form' %>
 </div>
 
-<% content_for :categories do %>
-  </br></br></br></br></br></br>
-  <b>Categories:</b>
-  <%= @article.categories.map { |c| c.name}.join(", ") %>
+<%if @article.categories.count > 0 %>
+  <% content_for :categories do %>
+    </br></br></br></br></br></br>
+    <b>Categories:</b>
+    <%= @article.categories.map { |c| c.name}.join(", ") %>
+  <%end%>
 <%end%>
 
 <!--

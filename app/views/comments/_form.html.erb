@@ -1,5 +1,5 @@
 <!--%= form_for( @comment, :url => article_comments_path(@article.id), :html => { :class => 'form-horizontal' }) do |f| % This doesn't work for edit, as url is different, so passing @article instead. Rails handles the routing details-->
-<%= form_for( [@article, @comment],  :html => { :class => 'form-horizontal' }) do |f| %>
+<%= form_for( [@article, @comment],  :html => { :class => 'form-horizontal' }, remote: true) do |f| %>
   <div class="control-group">
     <%= f.label :commenter, "Commenter:", :class => 'control-label' %>
     <div class = "controls">

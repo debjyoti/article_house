@@ -7,8 +7,14 @@ class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     user_email_hash = { :user_email => current_user.try(:email) }
-    @comment = @article.comments.create(params[:comment].merge(user_email_hash))
-    redirect_to article_path(@article)
+
+    respond_to do |format|
+      if @article.comments.create(params[:comment].merge(user_email_hash))
+        @comment = @article.comments.new
+        format.html { redirect_to article_path(@article) }
+        format.js { @comments = @article.comments }
+      end
+    end
   end
 
   def edit
@@ -24,13 +30,16 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @article = @comment.article
+    @comments = @article.comments
     
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         format.html { redirect_to :back, notice: 'Comment was successfully updated.' }
+        format.js
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit", notice: @comment.errors }
+        format.js {render action: "edit"}
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -38,8 +47,14 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to (:back)
+    @deleted_comment_id = @comment.id
+
+    respond_to do |format|
+      if @comment.destroy
+        format.html { redirect_to (:back), notice: 'Comment got deleted' }
+        format.js 
+      end
+    end
   end
 
   def index
