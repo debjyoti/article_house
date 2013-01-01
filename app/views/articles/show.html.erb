@@ -24,8 +24,10 @@
 <%if @article.categories.count > 0 %>
   <% content_for :categories do %>
     </br></br></br></br></br></br>
-    <b>Categories:</b>
-    <%= @article.categories.map { |c| c.name}.join(", ") %>
+    <hr>
+    <b>Categories</b>
+    <hr>
+    <%= sanitize @article.categories.map { |c| c.name}.join(",</br>") %>
   <%end%>
 <%end%>
 

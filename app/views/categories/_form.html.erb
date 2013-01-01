@@ -9,4 +9,10 @@
       <%= cat_form.check_box :_destroy, :class => 'check-box' %>
     </div>
   <% end %>
+  <%= cat_form.fields_for :subcategories, html: { class: 'form-horizontal' } do |subcat_form| %>
+    <div class="control-group">
+      <%= subcat_form.label :name, 'Subcategory:', class: 'control-label' %>
+      <%= subcat_form.text_field :name, class: 'text-field' %>
+    </div>
+  <%end%>
 <% end %>
