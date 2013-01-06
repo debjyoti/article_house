@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     category = @article.categories.new
-    category.subcategories.new
+    #category.subcategories.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,8 +43,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
-    category = @article.categories.new
-    category.subcategories.new
+    #category = @article.categories.new
+    #category.subcategories.new
   end
 
   # POST /articles

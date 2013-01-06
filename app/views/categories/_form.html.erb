@@ -1,18 +1,18 @@
-<%= form.fields_for :categories, :html => { :class => 'form-horizontal'} do |cat_form| %>
+<div class="control-group">
+  <%= f.label :name, 'Category:', :class => 'control-label' %>
+  <%= f.text_field :name, :class => 'text-field' %>
+</div>
+<div class="well">
+<%= f.fields_for :subcategories, html: { class: 'form-horizontal' } do |subcat_form| %>
+  <%= render 'subcategories/form', f: subcat_form %>
+<%end%>
+
+<%= link_to_add_fields "Add Subcategory", f, :subcategories %>
+</div>
+<% unless f.object.nil? || f.object.new_record? %>
   <div class="control-group">
-    <%= cat_form.label :name, 'Category:', :class => 'control-label' %>
-    <%= cat_form.text_field :name, :class => 'text-field' %>
+    <%= f.label :_destroy, 'Remove: ', :class => 'control-label' %>
+    <%= f.check_box :_destroy, :class => 'check-box' %>
   </div>
-  <% unless cat_form.object.nil? || cat_form.object.new_record? %>
-    <div class="control-group">
-      <%= cat_form.label :_destroy, 'remove:', :class => 'control-label' %>
-      <%= cat_form.check_box :_destroy, :class => 'check-box' %>
-    </div>
-  <% end %>
-  <%= cat_form.fields_for :subcategories, html: { class: 'form-horizontal' } do |subcat_form| %>
-    <div class="control-group">
-      <%= subcat_form.label :name, 'Subcategory:', class: 'control-label' %>
-      <%= subcat_form.text_field :name, class: 'text-field' %>
-    </div>
-  <%end%>
 <% end %>
+<HR COLOR="#C0C0C0" SIZE="3">

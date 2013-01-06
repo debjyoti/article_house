@@ -27,7 +27,7 @@
     <hr>
     <b>Categories</b>
     <hr>
-    <%= sanitize @article.categories.map { |c| c.name}.join(",</br>") %>
+    <%= sanitize @article.categories.map { |c| c.name + "(" + c.subcategories.map { |s| s.name}.join(",") + ")" }.join(",</br>") %>
   <%end%>
 <%end%>
 

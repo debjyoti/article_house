@@ -1,19 +1,24 @@
 <%= form_for @article, html: { class: 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :heading, :class => 'control-label' %>
+    <%= f.label :heading, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :heading, :class => 'text_field', :placeholder => 'Title of your article' %>
+      <%= f.text_field :heading, class: 'text_field', placeholder: 'Title of your article' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, :class => 'input-xxlarge', :placeholder => 'Type in your article. You can use HTML.' %>
+      <%= f.text_area :content, class: 'input-xxlarge', placeholder: 'Type in your article. You can use HTML.' %>
     </div>
   </div>
 
-  <h2> Categories </h2>
-  <%= render :partial => 'categories/form', :locals => {:form => f} %>
+  <h3> Categories </h3>
+  <div class="well">
+    <%= f.fields_for :categories, :html => { :class => 'form-horizontal'} do |cat_form| %>
+      <%= render :partial => 'categories/form', :locals => {f: cat_form} %>
+    <%end%>
+  <%= link_to_add_fields "Add Category", f, :categories %>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
