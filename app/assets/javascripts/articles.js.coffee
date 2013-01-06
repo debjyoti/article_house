@@ -9,7 +9,7 @@ $(document).on 'click', '.add_fields', (event) ->
   $(this).before($(this).data('fields').replace(regexp, time))
   event.preventDefault()
 
-$('form').on 'click', '.remove_fields', (event) ->
+$(document).on 'click', '.remove_fields', (event) ->
   $(this).prev('input[type=hidden]').val('1')
   $(this).closest(".control-group").hide()
   event.preventDefault()

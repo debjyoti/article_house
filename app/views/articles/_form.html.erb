@@ -2,26 +2,32 @@
   <div class="control-group">
     <%= f.label :heading, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :heading, class: 'text_field', placeholder: 'Title of your article' %>
+      <%= f.text_field :heading, class: 'input-block-level', placeholder: 'Title of your article' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, class: 'input-xxlarge', placeholder: 'Type in your article. You can use HTML.' %>
+      <%= f.text_area :content, class: 'input-block-level', placeholder: 'Type in your article. You can use HTML.' %>
     </div>
   </div>
+  
+  <div class="control-group">
 
-  <h3> Categories </h3>
+  <div class="controls">
+  <h3> Tag Categories </h3>
   <div class="well">
     <%= f.fields_for :categories, :html => { :class => 'form-horizontal'} do |cat_form| %>
       <%= render :partial => 'categories/form', :locals => {f: cat_form} %>
     <%end%>
-  <%= link_to_add_fields "Add Category", f, :categories %>
+    <%= link_to_add_fields "Add Category", f, :categories %>
+  </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn' %>
+  </div>
+
   </div>
 <%end%>

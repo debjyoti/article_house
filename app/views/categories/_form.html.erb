@@ -1,18 +1,26 @@
 <div class="control-group">
   <%= f.label :name, 'Category:', :class => 'control-label' %>
+  <div class="controls">
   <%= f.text_field :name, :class => 'text-field' %>
+  </div>
 </div>
-<div class="well">
+
+<div class="control-group">
+<div class="well pull-right">
 <%= f.fields_for :subcategories, html: { class: 'form-horizontal' } do |subcat_form| %>
   <%= render 'subcategories/form', f: subcat_form %>
 <%end%>
 
 <%= link_to_add_fields "Add Subcategory", f, :subcategories %>
 </div>
+</div>
+
 <% unless f.object.nil? || f.object.new_record? %>
   <div class="control-group">
     <%= f.label :_destroy, 'Remove: ', :class => 'control-label' %>
+    <div class="controls">
     <%= f.check_box :_destroy, :class => 'check-box' %>
+    </div>
   </div>
 <% end %>
 <HR COLOR="#C0C0C0" SIZE="3">
