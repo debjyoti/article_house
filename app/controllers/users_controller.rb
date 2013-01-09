@@ -13,13 +13,18 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.email == current_user.email then
+      flash[:notice] = "Can not edit own user"
+      redirect_to :back
+    end
   end
 
   def update
     @user = User.find(params[:id])
+    @user.role = params[:user][:role]
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.save
         format.html { redirect_to users_url }
         format.json { head :no_content }
       else

@@ -57,6 +57,7 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
+        flash.now[:alert]= 'Error: '+ @article.errors.full_messages.join(". ")
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
@@ -73,6 +74,7 @@ class ArticlesController < ApplicationController
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
+        flash.now[:alert]= 'Error: '+ @article.errors.full_messages.join(". ")
         format.html { render action: "edit" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
@@ -107,6 +109,7 @@ class ArticlesController < ApplicationController
       @articles = Article.all
     else
       @articles = Category.find_all_by_name(@selected_category).collect{ |cat| cat.article }
+      @articles.uniq!
     end
     @category_list = Category.select("distinct(name)").collect{ |item| item.name}
     @category_list << 'All'

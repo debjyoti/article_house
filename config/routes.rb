@@ -3,7 +3,7 @@ ArticleHouse::Application.routes.draw do
   root :to => 'articles#index'
 
   devise_for :users
-  resources :users 
+  resources :users, except: [:show, :new, :create] 
 
   resources :articles do
     collection do

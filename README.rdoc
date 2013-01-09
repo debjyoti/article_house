@@ -1,28 +1,23 @@
 == Article House is a simple blog application. It does the following:
 
-1st stage:
  Admin:
- - could manage articles in admin panel(add/edit/detele articles)
- - could manage comments on articles in admin panel(edit/delete comments)
- - could manage comments on articles on article page(edit/delete comments)
- - could manage users in admin panel(edit/delete)
- User:
- - could sign in/up
- - could see articles
- - could add comments to articles
- - could edit his comments on articles
- Guest:
- - could see articles
- - could add comments to articles
-
-2nd stage:
-Added categories for articles:
- Admin:
+ - can manage articles in admin panel(add/edit/detele articles)
+ - can manage comments on articles in admin panel(edit/delete comments)
+ - can manage comments on articles on article page(edit/delete comments)
+ - can manage users in admin panel(edit/delete)
  - can manage categories of articles(add/edit/delete)
- - category could have subcategories
+ - category can have subcategories
  - can assign article to many categories(add/edit/delete assignement between
    articles and categories) 
- User and Guest:
+ User:
+ - can sign in/up
+ - can see articles
+ - can add comments to articles
+ - can edit his comments on articles
+ - can select category and see articles assigned to that category
+ Guest:
+ - can see articles
+ - can add comments to articles
  - can select category and see articles assigned to that category
 
 == Check it out:
