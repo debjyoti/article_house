@@ -1,4 +1,6 @@
-== Article House is a simple blog application. It does the following:
+== Article House is a simple blog application to demonstrate authentication,
+authorization and nested models. It uses devise, cancan and twitter bootstrap
+gems. It does the following:
 
  Admin:
  - can manage articles in admin panel(add/edit/detele articles)
