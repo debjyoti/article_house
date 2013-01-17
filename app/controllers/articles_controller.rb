@@ -124,7 +124,7 @@ class ArticlesController < ApplicationController
 
   def set_up_index_view
     @articles = Article.all
-    @category_list = Category.select("distinct(name)").collect{ |item| item.name}
+    @category_list = Category.uniq.pluck(:name)
     @category_list << SELECT_PROMPT
     @selected_category = SELECT_PROMPT
   end
